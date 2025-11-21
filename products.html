@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeZone Ladies Shoes - Premium Collection</title>
+    <meta name="description" content="Browse our complete collection of premium ladies shoes. Filter by style, color, and occasion to find your perfect pair.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --natural-linen: #F5F1E8;
+            --flax-bloom: #E8DCC0;
+            --stone-gray: #8B8680;
+            --sage-green: #9CAF88;
+            --warm-white: #FEFCF7;
+            --charcoal: #4A453E;
+            --soft-terracotta: #D4A574;
+            --mist-blue: #B8C5D1;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--natural-linen);
+            color: var(--charcoal);
+        }
+
+        .font-serif {
+            font-family: 'Crimson Text', serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(245, 241, 232, 0.95), rgba(232, 220, 192, 0.9)),
+                        url('https://kimi-web-img.moonshot.cn/img/media1.popsugar-assets.com/07fab3aeb21aa1e6f67cb8da0f4211b0c9fe9b34.jpg') center/cover;
+            height: 40vh;
+        }
+
+        .filter-sidebar {
+            background: rgba(254, 252, 247, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+            background: var(--warm-white);
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(245, 241, 232, 0.95);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--charcoal), var(--sage-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--charcoal), var(--stone-gray));
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 69, 62, 0.3);
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .color-swatch {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .color-swatch:hover,
+        .color-swatch.active {
+            border-color: var(--charcoal);
+            transform: scale(1.1);
+        }
+
+        .filter-section {
+            border-bottom: 1px solid rgba(156, 175, 136, 0.2);
+        }
+
+        .filter-section:last-child {
+            border-bottom: none;
+        }
+
+        .price-range {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            background: linear-gradient(to right, var(--sage-green), var(--stone-gray));
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .size-option {
+            transition: all 0.2s ease;
+        }
+
+        .size-option:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation - Cart removed -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <img src="resources/brand-logo.png" alt="ShoeZone" class="w-10 h-10">
+                    <span class="font-serif text-2xl font-semibold text-gradient">ShoeZone</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Home</a>
+                    <a href="products.html" class="text-gray-900 font-semibold">Shoes</a>
+                    <a href="about.html" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">About</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button Only -->
+                <div class="flex items-center space-x-4">
+                    <button class="md:hidden mobile-menu-toggle p-2 text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-2 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded">Home</a>
+                <a href="products.html" class="block px-3 py-2 text-gray-900 font-semibold bg-gray-100 rounded">Shoes</a>
+                <a href="about.html" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded">About</a>
+                <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg flex items-center justify-center relative mt-16">
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/20"></div>
+        
+        <div class="relative z-10 text-center">
+            <h1 class="font-serif text-4xl md:text-6xl font-bold text-white mb-4">
+                Ladies Shoe Collection
+            </h1>
+            <p class="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
+                Discover premium shoes crafted for comfort, style, and every occasion
+            </p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Enhanced Filter Sidebar -->
+                <div class="lg:w-1/4">
+                    <div class="filter-sidebar sticky top-24 rounded-lg p-6 border border-gray-200">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-serif text-xl font-semibold text-gray-900">Filters</h3>
+                            <button class="text-sm text-gray-600 hover:text-gray-900" onclick="clearAllFilters()">
+                                Clear All
+                            </button>
+                        </div>
+
+                        <!-- Search -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Search</label>
+                            <input type="text" placeholder="Search shoes..." class="search-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-green">
+                        </div>
+
+                        <!-- Shoe Categories -->
+                        <div class="filter-section pb-6 mb-6">
+                            <h4 class="font-semibold text-gray-900 mb-3">Style</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="category-filter rounded text-sage-green focus:ring-sage-green" value="heels">
+                                    <span class="ml-2 text-sm text-gray-700">Heels</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="category-filter rounded text-sage-green focus:ring-sage-green" value="flats">
+                                    <span class="ml-2 text-sm text-gray-700">Flats</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="category-filter rounded text-sage-green focus:ring-sage-green" value="boots">
+                                    <span class="ml-2 text-sm text-gray-700">Boots</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="category-filter rounded text-sage-green focus:ring-sage-green" value="sandals">
+                                    <span class="ml-2 text-sm text-gray-700">Sandals</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="category-filter rounded text-sage-green focus:ring-sage-green" value="sneakers">
+                                    <span class="ml-2 text-sm text-gray-700">Sneakers</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="category-filter rounded text-sage-green focus:ring-sage-green" value="mules">
+                                    <span class="ml-2 text-sm text-gray-700">Mules</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div class="filter-section pb-6 mb-6">
+                            <h4 class="font-semibold text-gray-900 mb-3">Price Range</h4>
+                            <div class="px-2">
+                                <input type="range" class="price-range w-full" min="50" max="300" value="300" step="10">
+                                <div class="flex justify-between text-sm text-gray-600 mt-2">
+                                    <span>$50</span>
+                                    <span class="price-display font-semibold">Up to $300</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Colors -->
+                        <div class="filter-section pb-6 mb-6">
+                            <h4 class="font-semibold text-gray-900 mb-3">Colors</h4>
+                            <div class="grid grid-cols-4 gap-3">
+                                <div class="text-center">
+                                    <div class="color-swatch mx-auto mb-1" style="background-color: #000000;" data-color="black"></div>
+                                    <span class="text-xs text-gray-600">Black</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="color-swatch mx-auto mb-1" style="background-color: #FFFFFF; border: 1px solid #e5e7eb;" data-color="white"></div>
+                                    <span class="text-xs text-gray-600">White</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="color-swatch mx-auto mb-1" style="background-color: #F5F1E8;" data-color="nude"></div>
+                                    <span class="text-xs text-gray-600">Nude</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="color-swatch mx-auto mb-1" style="background-color: #8B4513;" data-color="brown"></div>
+                                    <span class="text-xs text-gray-600">Brown</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="color-swatch mx-auto mb-1" style="background-color: #D4A574;" data-color="tan"></div>
+                                    <span class="text-xs text-gray-600">Tan</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="color-swatch mx-auto mb-1" style="background-color: #800020;" data-color="burgundy"></div>
+                                    <span class="text-xs text-gray-600">Burgundy</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="color-swatch mx-auto mb-1" style="background-color: #FFD700;" data-color="gold"></div>
+                                    <span class="text-xs text-gray-600">Gold</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="color-swatch mx-auto mb-1" style="background-color: #DC143C;" data-color="red"></div>
+                                    <span class="text-xs text-gray-600">Red</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Occasion -->
+                        <div class="filter-section pb-6">
+                            <h4 class="font-semibold text-gray-900 mb-3">Occasion</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="occasion-filter rounded text-sage-green focus:ring-sage-green" value="Formal">
+                                    <span class="ml-2 text-sm text-gray-700">Formal</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="occasion-filter rounded text-sage-green focus:ring-sage-green" value="Office">
+                                    <span class="ml-2 text-sm text-gray-700">Office</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="occasion-filter rounded text-sage-green focus:ring-sage-green" value="Casual">
+                                    <span class="ml-2 text-sm text-gray-700">Casual</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="occasion-filter rounded text-sage-green focus:ring-sage-green" value="Evening">
+                                    <span class="ml-2 text-sm text-gray-700">Evening</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="occasion-filter rounded text-sage-green focus:ring-sage-green" value="Summer">
+                                    <span class="ml-2 text-sm text-gray-700">Summer</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="lg:w-3/4">
+                    <!-- Sort and View Options -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-sm text-gray-600">Sort by:</span>
+                            <select class="sort-select border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sage-green">
+                                <option value="featured">Featured</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="newest">Newest First</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-gray-600">View:</span>
+                            <div class="flex border border-gray-300 rounded-lg overflow-hidden">
+                                <button class="view-toggle px-3 py-2 text-sm bg-gray-100" data-view="grid">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                                    </svg>
+                                </button>
+                                <button class="view-toggle px-3 py-2 text-sm" data-view="list">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Count -->
+                    <div class="mb-6">
+                        <p class="text-sm text-gray-600">
+                            Showing <span class="product-count font-semibold">24</span> shoes
+                        </p>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Products will be dynamically loaded here -->
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="text-center mt-12">
+                        <button class="load-more-btn btn-primary text-white px-8 py-3 rounded-lg font-semibold">
+                            Load More Shoes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="resources/brand-logo.png" alt="ShoeZone" class="w-8 h-8">
+                        <span class="font-serif text-xl font-semibold">ShoeZone</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Premium ladies shoes crafted for comfort, style, and every occasion.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="products.html" class="hover:text-white transition-colors">All Shoes</a></li>
+                        <li><a href="products.html?category=heels" class="hover:text-white transition-colors">Heels</a></li>
+                        <li><a href="products.html?category=flats" class="hover:text-white transition-colors">Flats</a></li>
+                        <li><a href="products.html?category=boots" class="hover:text-white transition-colors">Boots</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Customer Care</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Size Guide</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Shipping Info</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Instagram</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Facebook</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pinterest</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2024 ShoeZone. All rights reserved. Crafted with care for your perfect step.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+    
+    <script>
+        // Products page specific functionality for shoes
+        document.addEventListener('DOMContentLoaded', function() {
+            // Price range display update
+            const priceRange = document.querySelector('.price-range');
+            const priceDisplay = document.querySelector('.price-display');
+            
+            priceRange?.addEventListener('input', function() {
+                priceDisplay.textContent = `Up to $${this.value}`;
+            });
+
+            // Color swatch selection
+            const colorSwatches = document.querySelectorAll('.color-swatch');
+            colorSwatches.forEach(swatch => {
+                swatch.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    updateColorFilters();
+                });
+            });
+
+            // View toggle functionality
+            const viewToggles = document.querySelectorAll('.view-toggle');
+            const productGrid = document.querySelector('.product-grid');
+            
+            viewToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const view = this.dataset.view;
+                    
+                    // Update active button
+                    viewToggles.forEach(btn => btn.classList.remove('bg-gray-100'));
+                    this.classList.add('bg-gray-100');
+                    
+                    // Update grid layout
+                    if (view === 'list') {
+                        productGrid.classList.remove('grid-cols-1', 'sm:grid-cols-2', 'lg:grid-cols-3');
+                        productGrid.classList.add('grid-cols-1');
+                    } else {
+                        productGrid.classList.remove('grid-cols-1');
+                        productGrid.classList.add('grid-cols-1', 'sm:grid-cols-2', 'lg:grid-cols-3');
+                    }
+                });
+            });
+
+            // Load more functionality
+            const loadMoreBtn = document.querySelector('.load-more-btn');
+            loadMoreBtn?.addEventListener('click', function() {
+                this.textContent = 'Loading...';
+                setTimeout(() => {
+                    this.textContent = 'Load More Shoes';
+                    // In a real app, you would load more products here
+                }, 1000);
+            });
+
+            // Mobile filter toggle
+            const filterToggle = document.createElement('button');
+            filterToggle.className = 'md:hidden fixed bottom-4 right-4 bg-sage-green text-white p-4 rounded-full shadow-lg z-40';
+            filterToggle.innerHTML = `
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h16a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h16a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h16a1 1 0 110 2H4a1 1 0 01-1-1z"></path>
+                </svg>
+            `;
+            document.body.appendChild(filterToggle);
+
+            filterToggle.addEventListener('click', function() {
+                const filterSidebar = document.querySelector('.filter-sidebar');
+                filterSidebar.classList.toggle('hidden');
+            });
+
+            // Mobile menu toggle
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            mobileMenuToggle?.addEventListener('click', function() {
+                mobileMenu?.classList.toggle('hidden');
+            });
+        });
+
+        function updateColorFilters() {
+            const activeColors = Array.from(document.querySelectorAll('.color-swatch.active'))
+                .map(swatch => swatch.dataset.color);
+            
+            // Update filter logic here
+            console.log('Active colors:', activeColors);
+        }
+
+        function clearAllFilters() {
+            // Clear all checkboxes
+            document.querySelectorAll('.category-filter').forEach(cb => cb.checked = false);
+            document.querySelectorAll('.occasion-filter').forEach(cb => cb.checked = false);
+            document.querySelectorAll('.color-swatch.active').forEach(swatch => swatch.classList.remove('active'));
+            
+            // Reset price range
+            const priceRange = document.querySelector('.price-range');
+            const priceDisplay = document.querySelector('.price-display');
+            if (priceRange && priceDisplay) {
+                priceRange.value = 300;
+                priceDisplay.textContent = 'Up to $300';
+            }
+            
+            // Clear search
+            const searchInput = document.querySelector('.search-input');
+            if (searchInput) {
+                searchInput.value = '';
+            }
+            
+            // Apply filters
+            if (window.ShoeZoneStore) {
+                window.ShoeZoneStore.renderProducts();
+            }
+        }
+    </script>
+</body>
+</html>
