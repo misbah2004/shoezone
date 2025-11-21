@@ -6,7 +6,7 @@ class ShoeZoneStore {
         this.products = this.initializeShoeProducts();
         this.filteredProducts = [...this.products];
         this.selectedSize = {};
-        this.whatsappNumber = '03195985750'; // Your WhatsApp number
+        this.whatsappNumber = '03184918558'; // Your WhatsApp number
         
         this.init();
     }
